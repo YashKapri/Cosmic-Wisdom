@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cosmic Wisdom - Your Spiritual Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div id="header-container">
+        <div id="ganesh-icon">
+            <img src="9045fc2ba0ad402ca349aaea103243b2.jpg" alt="Lord Ganesha Icon">
+        </div>
+        <h1>Cosmic Wisdom & Life Path Insights</h1>
+        
+        <nav id="auth-links">
+            <a href="#" onclick="showModal('login-modal')">Login</a>
+            <a href="#" onclick="showModal('register-modal')">Register</a>
+        </nav>
+        
+        <nav id="user-links" class="hidden">
+            <span id="welcome-msg"></span>
+            <a href="#" onclick="showDashboard()">My Dashboard</a>
+            <a href="#" onclick="logout()">Logout</a>
+        </nav>
+    </div>
+
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('login-modal')">&times;</span>
+            <h2>Login to Your Cosmic Portal</h2>
+            <form onsubmit="event.preventDefault(); login()">
+                <label for="login-email">Email:</label>
+                <input type="email" id="login-email" required>
+                <label for="login-pass">Password:</label>
+                <input type="password" id="login-pass" required>
+                <button type="submit">Unlock Wisdom</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('register-modal')">&times;</span>
+            <h2>Create Your Cosmic Profile</h2>
+            <p>Save your birth details to unlock personalized insights.</p>
+            <form onsubmit="event.preventDefault(); register()">
+                <label for="reg-name">Name:</label>
+                <input type="text" id="reg-name" required>
+                <label for="reg-email">Email:</label>
+                <input type="email" id="reg-email" required>
+                <label for="reg-pass">Password:</label>
+                <input type="password" id="reg-pass" required>
+                
+                <hr style="margin: 20px 0;">
+                
+                <label for="reg-dob">Date of Birth:</label>
+                <input type="date" id="reg-dob" required>
+                <label for="reg-sign">Your Zodiac Sign:</label>
+                <select id="reg-sign" required>
+                    <option value="">Select Zodiac Sign</option>
+                    <option value="aries">Aries</option>
+                    <option value="taurus">Taurus</option>
+                    <option value="gemini">Gemini</option>
+                    <option value="cancer">Cancer</option>
+                    <option value="leo">Leo</option>
+                    <option value="virgo">Virgo</option>
+                    <option value="libra">Libra</option>
+                    <option value="scorpio">Scorpio</option>
+                    <option value="sagittarius">Sagittarius</option>
+                    <option value="capricorn">Capricorn</option>
+                    <option value="aquarius">Aquarius</option>
+                    <option value="pisces">Pisces</option>
+                </select>
+                <label for="reg-tob">Time of Birth:</label>
+                <input type="time" id="reg-tob" required>
+                <label for="reg-pob">Place of Birth (City, Country):</label>
+                <input type="text" id="reg-pob" placeholder="e.g., Delhi, India" required>
+                
+                <button type="submit">Begin My Journey</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="dashboard" class="hidden">
+        <h2>Your Personal Cosmic Dashboard</h2>
+        <p>Welcome back, <span id="dash-name"></span>. Here is your divine guidance for today.</p>
+        
+        <div class="dash-section">
+            <h3>Today's Guidance for <span id="dash-sign"></span></h3>
+            <p id="dash-horoscope"></p>
+        </div>
+        
+        <div class="dash-section">
+            <h3>Your Sacred Numbers</h3>
+            <p><strong>Your Life Path Number:</strong> <span id="dash-lifepath"></span></p>
+            <p><strong>Your Birth Day (Talent) Number:</strong> <span id="dash-daynum"></span></p>
+        </div>
+        
+        <div class="dash-section">
+            <h3>Your Vedic Natal Chart</h3>
+            <p>Your saved birth details: <span id="dash-birth-details"></span></p>
+            <button onclick="generateUserChart()">Reveal My Cosmic Blueprint</button>
+            <div id="user-chart-result"></div>
+        </div>
+    </div>
+    
+    <div id="public-tools">
+
+        <div id="daily-mantra">
+            <h2>Mantra for Today</h2>
+            <p id="mantra-text">"I am aligned with the wisdom of the universe."</p>
+            <button onclick="getDailyMantra()">Receive New Mantra</button>
+        </div>
+
+        <div id="horoscope">
+            <h2>Daily Horoscope</h2>
+            <select id="sign-select">
+                <option value="">Select Zodiac Sign</option>
+                <option value="aries">Aries</option>
+                <option value="taurus">Taurus</option>
+                <option value="gemini">Gemini</option>
+                <option value="cancer">Cancer</option>
+                <option value="leo">Leo</option>
+                <option value="virgo">Virgo</option>
+                <option value="libra">Libra</option>
+                <option value="scorpio">Scorpio</option>
+                <option value="sagittarius">Sagittarius</option>
+                <option value="capricorn">Capricorn</option>
+                <option value="aquarius">Aquarius</option>
+                <option value="pisces">Pisces</option>
+            </select>
+            <button onclick="getHoroscope()">Reveal Today's Message</button>
+            <p><strong>Reading:</strong> <span id="horoscope-result"></span></p>
+        </div>
+        
+        <div id="compatibility">
+            <h2>Zodiac Compatibility Checker</h2>
+            <select id="zodiac1">
+                <option value="">Select First Sign</option>
+                <option value="aries">Aries</option>
+                <option value="taurus">Taurus</option>
+                <option value="gemini">Gemini</option>
+                <option value="cancer">Cancer</option>
+                <option value="leo">Leo</option>
+                <option value="virgo">Virgo</option>
+                <option value="libra">Libra</option>
+                <option value="scorpio">Scorpio</option>
+                <option value="sagittarius">Sagittarius</option>
+                <option value="capricorn">Capricorn</option>
+                <option value="aquarius">Aquarius</option>
+                <option value="pisces">Pisces</option>
+            </select>
+            <select id="zodiac2">
+                <option value="">Select Second Sign</option>
+                <option value="aries">Aries</option>
+                <option value="taurus">Taurus</option>
+                <option value="gemini">Gemini</option>
+                <option value="cancer">Cancer</option>
+                <option value="leo">Leo</option>
+                <option value="virgo">Virgo</option>
+                <option value="libra">Libra</option>
+                <option value="scorpio">Scorpio</option>
+                <option value="sagittarius">Sagittarius</option>
+                <option value="capricorn">Capricorn</option>
+                <option value="aquarius">Aquarius</option>
+                <option value="pisces">Pisces</option>
+            </select>
+            <button onclick="checkCompatibility()">Check Divine Union</button>
+            <p><strong>Guidance:</strong> <span id="compatibility-result"></span></p>
+        </div>
+        
+        <div id="numerology">
+            <h2>Your Sacred Numbers</h2>
+            <label for="dob">Enter your Date of Birth:</label>
+            <input type="date" id="dob">
+            
+            <button type="button" onclick="calculateDayNumber()">Calculate Birth Day Number</button>
+            <button type="button" onclick="calculateLifePathNumber()">Calculate Life Path Number</button>
+
+            <p><strong>Your Birth Day (Talent) Number:</strong> <span id="day-number-result"></span></p>
+            <p><strong>Your Life Path (Destiny) Number:</strong> <span id="life-path-result"></span></p>
+        </div>
+        
+        <div id="astro-chart">
+            <h2>Vedic Natal Chart (D1 Lagna)</h2>
+            <p>Please <a href="#" onclick="showModal('login-modal')">log in</a> or <a href="#" onclick="showModal('register-modal')">register</a> to save your details and generate your personal chart.</p>
+            <hr>
+            <p>Or generate a temporary chart:</p>
+            <label for="chart-dob">Date of Birth:</label>
+            <input type="date" id="chart-dob">
+            <label for="chart-time">Time of Birth:</label>
+            <input type="time" id="chart-time">
+            <label for="chart-location">Place of Birth:</label>
+            <input type="text" id="chart-location" placeholder="City, Country">
+            <button type="button" onclick="generateCharts()">Generate Natal Chart</button>
+            <div id="chart-result">Enter your birth details to reveal your cosmic blueprint.</div>
+        </div>
+    </div> <footer>
+        <p>&copy; 2025 Cosmic Wisdom. All readings are for guidance and spiritual insight.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

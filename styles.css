@@ -1,0 +1,387 @@
+/* --- Global Resets and Variables (Spiritual Theme) --- */
+:root {
+    --primary-color: #5d4a7c; /* Deep Violet/Indigo (Celestial) */
+    --primary-hover: #483a62; 
+    --background-color: #edeaf5; /* Very light lavender/grey */
+    --card-background: #fff;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Softer card shadow */
+    --border-radius: 12px; 
+    --text-color-light: #333;
+    --accent-color: #e6b800; /* Gold/Amber (Spiritual Highlight) */
+    --secondary-color: #1a1a1a; 
+}
+
+/* --- NEW: Animated Background --- */
+@keyframes cosmic-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Base Body and Layout --- */
+body {
+    font-family: 'Georgia', serif; 
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    color: var(--text-color-light); 
+    text-rendering: optimizeLegibility; 
+    
+    /* NEW: Animated Gradient Background */
+    background: linear-gradient(-45deg, #edeaf5, #d8d2e6, #a79cc2, #6f638d);
+    background-size: 400% 400%;
+    animation: cosmic-flow 25s ease infinite;
+}
+
+/* ---------------------------------------------------- */
+/* --- Header (Full-Width Navbar) --- */
+#header-container {
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    background: var(--card-background);
+    padding: 10px 40px; 
+    margin: -20px -20px 20px -20px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+    border-radius: 0; 
+    border-left: none; 
+    border-right: none;
+    max-width: none;
+    border-bottom: 5px solid var(--primary-color); 
+    
+    /* NEW: Sticky Navigation */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* --- Ganesha Icon Styling (Logo) --- */
+#ganesh-icon img {
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%;
+    border: 3px solid var(--accent-color); 
+    box-shadow: 0 0 18px rgba(230, 184, 0, 0.6); 
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* UPDATED */
+}
+
+/* NEW: Enhanced Icon Hover */
+#ganesh-icon img:hover {
+    transform: scale(1.1); /* Increased scale */
+    box-shadow: 0 0 35px rgba(230, 184, 0, 1); /* Brighter glow */
+}
+
+/* --- Header Title (Branding) --- */
+h1 {
+    color: var(--primary-color); 
+    font-size: 1.8em; 
+    font-weight: 700; 
+    letter-spacing: 1.5px; 
+    margin: 0;
+    padding-left: 20px; 
+    text-shadow: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    flex-grow: 1; 
+}
+
+/* --- Header Navigation --- */
+#header-container nav {
+    display: flex;
+    align-items: center;
+}
+
+#header-container nav a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 20px;
+    font-size: 1em;
+    padding: 5px 10px;
+    border-radius: 6px;
+    transition: color 0.3s ease; /* UPDATED */
+    
+    /* NEW: Underline Effect */
+    position: relative;
+}
+
+/* NEW: Underline pseudo-element */
+#header-container nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -5px; /* Position under the text */
+    left: 0;
+    background-color: var(--accent-color);
+    transform-origin: center;
+    transition: transform 0.3s ease-out;
+}
+
+/* NEW: Interactive Hover for Nav Links */
+#header-container nav a:hover {
+    color: var(--accent-color); /* Brighten text on hover */
+}
+#header-container nav a:hover::after {
+    transform: scaleX(1); /* "Grow" the underline */
+}
+
+#header-container nav span#welcome-msg {
+    margin-left: 20px;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+/* ---------------------------------------------------- */
+
+
+/* --- Utility Classes --- */
+.hidden {
+    display: none !important;
+}
+
+/* --- Section Headings --- */
+h2 {
+    color: var(--primary-color); 
+    border-bottom: 2px solid var(--primary-color); 
+    padding-bottom: 10px;
+    margin-top: 0;
+    font-size: 1.6em;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+h3 {
+    color: var(--primary-hover);
+    font-size: 1.3em;
+}
+
+/* --- Content Cards (All other divs) --- */
+div {
+    background: var(--card-background);
+    padding: 30px; 
+    margin: 20px auto; 
+    max-width: 1000px; 
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow); 
+    border-left: 5px solid var(--primary-color); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+div:hover {
+    transform: translateY(-4px); 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Mantra Section Style --- */
+#daily-mantra {
+    border-left-color: var(--accent-color);
+    text-align: center;
+}
+#daily-mantra p {
+    font-size: 1.4em;
+    font-style: italic;
+    color: var(--primary-hover);
+    margin: 20px 0;
+}
+
+/* --- Dashboard Styles --- */
+#dashboard .dash-section {
+    background: #f9f8fd;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-hover);
+}
+#dashboard p {
+    font-size: 1.1em;
+}
+
+/* --- Form Elements --- */
+select, 
+input[type="date"], 
+input[type="time"], 
+input[type="text"],
+input[type="email"], 
+input[type="password"]
+{
+    padding: 10px 12px;
+    margin: 10px 8px 10px 0;
+    border: 1px solid #c8c8c8;
+    border-radius: 6px; 
+    font-size: 1em;
+    box-sizing: border-box; 
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 100%; 
+}
+label { 
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+select:focus, 
+input:focus {
+    border-color: var(--primary-color);
+    outline: none; 
+    box-shadow: 0 0 0 3px rgba(93, 74, 124, 0.2); 
+}
+
+/* --- Buttons --- */
+button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 6px; 
+    cursor: pointer;
+    padding: 12px 25px; 
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.1s;
+    width: 100%; 
+    margin-top: 10px;
+}
+button:hover {
+    background-color: var(--primary-hover);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+button:active {
+    transform: scale(0.98);
+}
+
+/* --- Modal Styles --- */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 100; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); 
+    padding-top: 60px;
+}
+.modal-content {
+    background: var(--card-background);
+    margin: 5% auto;
+    padding: 30px;
+    max-width: 600px; 
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow); 
+    border-left: 5px solid var(--primary-color); 
+    position: relative;
+    
+    /* NEW: Modal Animation */
+    animation: modal-fade-in 0.5s ease-out;
+}
+
+/* NEW: Modal Animation Keyframe */
+@keyframes modal-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute; 
+    top: 10px;
+    right: 25px;
+}
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* --- Chart Output Specific Styles --- */
+#chart-result table, #user-chart-result table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+}
+#chart-result th, #chart-result td,
+#user-chart-result th, #user-chart-result td {
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    text-align: left;
+}
+#chart-result th, #user-chart-result th {
+    background-color: #f5f5f5;
+    color: var(--primary-hover);
+}
+#chart-result pre, #user-chart-result pre {
+    background: #fdfdfd;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px dashed #ddd;
+    overflow-x: auto;
+}
+
+/* --- SVG Chart Styles --- */
+svg {
+    display: block; 
+    margin: 15px auto; 
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--primary-hover) !important;
+}
+svg text {
+    user-select: none;
+    fill: var(--primary-color) !important; 
+}
+svg text[fill="#c00"] { 
+    fill: var(--accent-color) !important; 
+    font-weight: bolder !important;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--primary-color); /* UPDATED: Match theme */
+    font-size: 0.9em;
+    font-weight: bold;
+    /* Reset card styles for footer */
+    background: none;
+    border-left: none;
+    box-shadow: none;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    #header-container {
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px 0;
+        margin: -20px -20px 20px -20px;
+        position: static; /* NEW: Don't be sticky on mobile */
+    }
+    h1 {
+        margin-top: 10px;
+        padding-left: 0;
+        text-align: center;
+    }
+    #header-container nav {
+        margin-top: 15px;
+        justify-content: center;
+        width: 100%;
+    }
+    #ganesh-icon img {
+        width: 80px;
+        height: 80px;
+    }
+    select, input, button {
+        width: 100%;
+        margin-right: 0;
+    }
+}
