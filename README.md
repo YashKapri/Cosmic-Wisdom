@@ -1,0 +1,2 @@
+# Cosmic-Wisdom
+Astrological application
